@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12" project-jdk-type="Python SDK" />
+=======
+  <component name="Black">
+    <option name="sdkName" value="Python 3.12 (Diplomarbeit_KI_Model_Auto)" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (Diplomarbeit_KI_Model_Auto)" project-jdk-type="Python SDK" />
+>>>>>>> bb0b427ad6a2050a2a10943bfb8f2a20a9365e6b
 </project>
