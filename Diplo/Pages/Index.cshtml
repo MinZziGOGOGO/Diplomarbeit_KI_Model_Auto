@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="text-center">
+    <h2>Live Camera Stream</h2>
+
+    <video id="videoStream" width="640" height="480" autoplay>
+        <p>Your browser does not support HTML5 video.</p>
+    </video>
+
+    <div id="errorMessage" style="display:none; color:red;">
+        <p>No resource found or camera stream unavailable.</p>
+    </div>
+</div>
+
+<script>
+    var videoUrl = "http://<RASPBERRY_PI_IP>:5000/video_feed";
+    var video = document.getElementById("videoStream");
+    var errorMessage = document.getElementById("errorMessage");
+
+    function loadStream() {
+        video.src = videoUrl;
+        video.onerror = function () {
+            video.style.display = "none";
+            errorMessage.style.display = "block";
+        };
+    }
+
+    window.onload = loadStream;
+</script>
