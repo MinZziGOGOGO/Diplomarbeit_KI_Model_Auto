@@ -1,5 +1,13 @@
 hochladen:
-git pull origin master
+git pull origin main
 git add .
 git commit -m "Einfügen"
-git push --set-upstream
+git push origin main
+
+herunterladen:
+git pull origin main
+
+hilfestellung:
+git Status
+
+hinweis: vor dem Arbeiten bitte unbedingt: git pull origin main
