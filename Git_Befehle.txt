@@ -1,0 +1,5 @@
+hochladen:
+git pull origin master
+git add .
+git commit -m "Einfügen"
+git push --set-upstream
