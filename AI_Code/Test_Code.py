@@ -1,19 +1,4 @@
-import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, BatchNormalization, Activation, MaxPool2D, Conv2DTranspose, Concatenate, Input
-from tensorflow.keras.models import Model
-from tensorflow.keras.applications import MobileNetV2
-
-print("TF Version: ", tf.__version__)
-
-def conv_block(inputs, num_filters):
-    x = Conv2D(num_filters, 3, padding="same")(inputs)
-    x = BatchNormalization()(x)
-    x = Activation("relu")(x)
-
-    x = Conv2D(num_filters, 3, padding="same")(x)
-    x = BatchNormalization()(x)
-    x = Activation("relu")(x)
-
+# Description: This code is used to test the model architecture of MobileNetV2 U-Net.
     return x
 
 def decoder_block(inputs, skip, num_filters):
