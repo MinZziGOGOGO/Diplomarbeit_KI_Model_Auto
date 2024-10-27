@@ -120,11 +120,8 @@ while True:
             # Draw the bounding box in green on the result
             cv2.rectangle(result, (x, y), (x + w, y + h), (0, 255, 0), 2)  # Green bounding box
 
-    # Flip the result horizontally
-    flipped_result = cv2.flip(result, 1)  # 1 indicates a horizontal flip
-
     # Display only the flipped red-filled areas with bounding boxes
-    cv2.imshow("Segmented Object with Red Filled Contours and Bounding Boxes", flipped_result)
+    cv2.imshow("Segmented Object with Red Filled Contours and Bounding Boxes", result)
 
     # Press 'q' to exit the loop and close the window
     if cv2.waitKey(1) & 0xFF == ord('q'):

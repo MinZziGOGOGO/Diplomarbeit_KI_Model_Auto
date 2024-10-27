@@ -73,6 +73,12 @@ while True:
     # Create a mask with the same dimensions as the frame (initialized to black)
     mask = np.zeros(frame.shape[:2], dtype="uint8")
 
+    # Create a copy of the original frame to draw the contours before filling
+    contour_frame = frame.copy()
+
+    # Draw the contours on the copy of the frame (before filling them)
+    cv2.drawContours(contour_frame, contours, -1, (0, 255, 0), 2)
+
     # Draw and fill only closed or nearly closed contours
     for contour in contours:
         # Approximate the contour to reduce noise and smooth it (using dynamic epsilon)
@@ -106,18 +112,18 @@ while True:
     # Apply the smoothed mask to the red background instead of the original frame
     result = cv2.bitwise_and(red_background, red_background, mask=smoothed_mask)
 
-    # ---- Draw Bounding Boxes Around Each Smoothed Contour ----
-    # Find contours in the smoothed mask for bounding box calculation
-    smoothed_contours, _ = cv2.findContours(smoothed_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    for contour in smoothed_contours:
+    # ---- Draw Bounding Boxes Around Each Red Object ----
+    for contour in contours:
         if cv2.contourArea(contour) > 500:
-            # Calculate the bounding box around each smoothed contour
+            # Calculate the bounding box around each contour
             x, y, w, h = cv2.boundingRect(contour)
             # Draw the bounding box in green on the result
             cv2.rectangle(result, (x, y), (x + w, y + h), (0, 255, 0), 2)  # Green bounding box
 
-    # Display only the red-filled areas with bounding boxes
+    # Flip the result horizontally
+    flipped_result = cv2.flip(result, 1)  # 1 indicates a horizontal flip
+
+    # Display only the flipped red-filled areas with bounding boxes
     cv2.imshow("Segmented Object with Red Filled Contours and Bounding Boxes", result)
 
     # Press 'q' to exit the loop and close the window
